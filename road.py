@@ -1,10 +1,9 @@
 import city
 
 class Road:
-    def __init__(self, from_city, to_city, length):
-        self.from_city = from_city
+    def __init__(self, to_city, length):
         self.to_city = to_city
-        self.length = length
+        self.length = float(length)
 
     def __str__(self):
-        return f'from : {str(self.from_city)} to : {str(self.to_city)} length : {str(self.length)}' 
+        return f'to : {self.to_city.name} [length = {str(self.length)}]'
