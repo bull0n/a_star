@@ -8,9 +8,10 @@ class City:
         return '%s [%s:%s] connected\n%s' % (
             self.name,
             self.coordinates[0],
-            self.coordinates[1])#,
-            #'\n'.join([str(road) for road in self.connected_roads])
+            self.coordinates[1],
+            'hello'
         )
+        # '\n'.join([str(road) for road in self.connected_roads])
 
     def __hash__(self):
         return str(self).__hash__()
@@ -23,7 +24,7 @@ class City:
 
 
     def connect_road(self, city, length):
-        self.connected_cities.[city] = length
+        self.connected_cities[city] = float(length)
 
     def x(self):
         return float(self.coordinates[0])

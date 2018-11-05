@@ -67,7 +67,7 @@ class Graph:
             to_visit.remove(current)
             history.add(current)
 
-            for city, length in current.connected_cities: # check all neighbors
+            for city, length in current.connected_cities.items(): # check all neighbors
                 if not city in history: # if in history, ignore it
                     temp_g = dict_g[current] + length # calculate the temporary g
 
