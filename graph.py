@@ -19,8 +19,8 @@ class Graph:
         '''
         add a road connecting 2 city in our graph
         '''
-        from_city.connect_road(Road(to_city, length))
-        to_city.connect_road(Road(from_city, length))
+        from_city.connect_road(to_city, length)
+        to_city.connect_road(from_city, length)
 
     def search_city(self, city_name):
         '''
@@ -67,26 +67,26 @@ class Graph:
             to_visit.remove(current)
             history.add(current)
 
-            for road in current.connected_roads: # check all neighbors
-                if not road.to_city in history: # if in history, ignore it
-                    temp_g = dict_g[current] + road.length # calculate the temporary g
+            for city, length in current.connected_cities: # check all neighbors
+                if not city in history: # if in history, ignore it
+                    temp_g = dict_g[current] + length # calculate the temporary g
 
-                    if not road.to_city in to_visit: # if the city isn't in the visit map yet add it
-                        to_visit.add(road.to_city)
+                    if not city in to_visit: # if the city isn't in the visit map yet add it
+                        to_visit.add(city)
                         if debug:
-                            print(f'discovered new city ; {road.to_city.name}')
-                    elif temp_g >= dict_g[road.to_city]: # if the city has a better distance, add its better value
+                            print(f'discovered new city ; {city.name}')
+                    elif temp_g >= dict_g[city]: # if the city has a better distance, add its better value
                         if debug:
-                            print(f'visiting {road.to_city.name} but distance is not optimal')
+                            print(f'visiting {city.name} but distance is not optimal')
                         continue
 
 
-                    path_done[road.to_city] = current
-                    dict_g[road.to_city] = temp_g
-                    dict_h[road.to_city] = dict_g[road.to_city] + heuristic(road.to_city, to_city)
+                    path_done[city] = current
+                    dict_g[city] = temp_g
+                    dict_h[city] = dict_g[city] + heuristic(city, to_city)
 
                     if debug:
-                        print(f'new shorter path to {road.to_city.name} - distance : {dict_h[road.to_city]}')
+                        print(f'new shorter path to {city.name} - distance : {dict_h[city]}')
             if display_iterations:
                 iterations += 1
 
@@ -96,6 +96,9 @@ class Graph:
         return self.reconstruct_path(path_done, current)
 
     def reconstruct_path(self, path_done, current):
+        '''
+        iterate over the map build to build the final path
+        '''
         final_path = [current]
 
         while current in path_done.keys():
