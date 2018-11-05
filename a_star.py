@@ -70,7 +70,7 @@ if __name__ == '__main__':
     add_roads('data/connections.txt', graph)
     print(graph)
 
-    path = find_shortest_path(graph, "Bern", "Paris")
+    path = find_shortest_path(graph, "Bern", "Rome")
 
     print('shortest path : ')
     print([city.name for city in path ])
