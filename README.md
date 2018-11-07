@@ -1,3 +1,21 @@
+# Utilisation
+
+To run it, you need to run the `a_star.py` file
+
+the configuration is declared at the beginning of the file `a_star.py`
+
+```python
+debug = False
+display_iterations = True
+from_city = 'Paris'
+to_city = 'Prague'
+```
+
+- debug : allows to display informations about every steps of the algorithm
+- display_iterations : will display how many iterations the algorithm did
+- from_city : is the name of the city to start our path
+- to_city is the name of the city to send our path
+
 # Questions
 
 ## L’utilisation des différentes heuristiques a-t-elle une influence sur l’efficacité de la recherche ? (en termes du nombres de noeuds visités)

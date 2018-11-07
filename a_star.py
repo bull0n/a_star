@@ -3,6 +3,11 @@ import math
 from graph import Graph
 from city import City
 
+debug = False
+display_iterations = True
+from_city = 'Paris'
+to_city = 'Prague'
+
 def square(x):
     '''
     return the square of a number
@@ -65,19 +70,19 @@ def find_shortest_path(g, city_name1, city_name2):
 
     print('\nshortest path : ')
     print('\nwith heuristic 0 : ')
-    path1 = g.a_star(from_city, to_city, heuristic_0, debug = False)
+    path1 = g.a_star(from_city, to_city, heuristic_0, debug = debug, display_iterations = display_iterations)
     print_path(path1)
     print('\nwith heuristic x : ')
-    path2 = g.a_star(from_city, to_city, heuristic_difference_x, debug = False)
+    path2 = g.a_star(from_city, to_city, heuristic_difference_x, debug = debug, display_iterations = display_iterations)
     print_path(path2)
     print('\nwith heuristic y : ')
-    path3 = g.a_star(from_city, to_city, heuristic_difference_y, debug = False)
+    path3 = g.a_star(from_city, to_city, heuristic_difference_y, debug = debug, display_iterations = display_iterations)
     print_path(path3)
     print('\nwith heuristic manhattan : ')
-    path4 = g.a_star(from_city, to_city, heuristic_manhattan, debug = False)
+    path4 = g.a_star(from_city, to_city, heuristic_manhattan, debug = debug, display_iterations = display_iterations)
     print_path(path4)
     print('\nwith heuristic as crows flies : ')
-    path5 = g.a_star(from_city, to_city, heuristic_as_crows_flies, debug = False)
+    path5 = g.a_star(from_city, to_city, heuristic_as_crows_flies, debug = debug, display_iterations = display_iterations)
     print_path(path5)
 
     return path5
@@ -87,6 +92,8 @@ def print_path(path):
     print a path and its length
     the path must be as returned by Graph.find_shortest_path
     '''
+    print('\nFINAL PATH : ')
+
     length = 0
 
     i = 0
@@ -103,4 +110,4 @@ if __name__ == '__main__':
     add_roads('data/connections.txt', graph)
     print(graph)
 
-    path = find_shortest_path(graph, "Paris", "Prague")
+    path = find_shortest_path(graph, from_city, to_city)
