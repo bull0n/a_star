@@ -43,10 +43,10 @@ class Graph:
         '''
         find the shortest path between 2 city
         return an array of roads
+        debug and display iterations allow to display informations about what happens in the algorithm
         '''
 
-        if debug:
-            print('\n')
+        print_debug('\n', debug)
 
         iterations = 0
 
@@ -114,6 +114,9 @@ class Graph:
         return final_path
 
     def smallest_h(self, d, to_visit):
+        '''
+        find the smallest h in the cities that are pending to be visited
+        '''
         min = None
 
         for key, val in d.items():

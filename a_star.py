@@ -4,6 +4,9 @@ from graph import Graph
 from city import City
 
 def square(x):
+    '''
+    return the square of a number
+    '''
     return x*x
 
 def read_file(filename):
@@ -80,6 +83,10 @@ def find_shortest_path(g, city_name1, city_name2):
     return path5
 
 def print_path(path):
+    '''
+    print a path and its length
+    the path must be as returned by Graph.find_shortest_path
+    '''
     length = 0
 
     i = 0

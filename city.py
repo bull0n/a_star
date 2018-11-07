@@ -1,4 +1,9 @@
 class City:
+    '''
+    Class that represents a city
+    composed by a name, coordinates and a dictionnary of connected cities
+    the dictionnary make the road directionnal, like in real life. Not every roads are bidirectionnal
+    '''
     def __init__(self, name, coordinates):
         self.name = name
         self.coordinates = coordinates
