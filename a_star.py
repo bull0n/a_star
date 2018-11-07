@@ -96,7 +96,4 @@ if __name__ == '__main__':
     add_roads('data/connections.txt', graph)
     print(graph)
 
-    bern = graph.search_city("Bern")
-    genoa = graph.search_city("Genoa")
-
-    path = find_shortest_path(graph, "Bern", "Rome")
+    path = find_shortest_path(graph, "Lisbon", "Warsaw")
