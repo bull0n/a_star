@@ -8,7 +8,7 @@ Oui plus l'heuristique est proche du résultat réel, moins l'algorithme fera d'
 
 Les heuristiques de la différence en x, différence en y, 0 et distance à vol d'oiseau sont admissibles. Donc les chemins retournés seront toujours identiques.
 
-Par contre manhattan n'est pas admissible et il est donc possible de trouver un chemin qui n'est pas optimal
+Par contre manhattan n'est pas admissible et il est donc possible de trouver un chemin qui n'est pas optimal. Par exemple de Paris à Prague
 
 ## Dans un cas réel, quelle heuristique utiliseriez-vous ?
 
