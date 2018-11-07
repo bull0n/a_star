@@ -5,22 +5,21 @@ class City:
         self.connected_cities = {}
 
     def __str__(self):
-        return '%s [%s:%s] connected\n%s' % (
+        return '%s [%s:%s] connected to\n%s' % (
             self.name,
             self.coordinates[0],
             self.coordinates[1],
-            'hello'
+            {city.name : str(length) for city, length in self.connected_cities.items()}
         )
-        # '\n'.join([str(road) for road in self.connected_roads])
 
     def __hash__(self):
-        return str(self).__hash__()
+        return self.name.__hash__()
 
     def __eq__(self, compared):
-        if isinstance(compared, str):
-            return self.name == compared
-        elif isinstance(compared, City) :
-            return self.name == compared.name and self.coordinates == compared.coordinates
+        if compared == None:
+            return False
+
+        return self.name == compared.name
 
 
     def connect_road(self, city, length):

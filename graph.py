@@ -1,9 +1,16 @@
-from road import Road
 from city import City
 
 import sys
 import os
 import math
+
+def print_debug(str, debug):
+    '''
+    print only if debug flag is true
+    '''
+    if debug:
+        print(str)
+
 
 class Graph:
     def __init__(self):
@@ -27,7 +34,7 @@ class Graph:
         return a city by its name
         '''
         for city in self.cities:
-            if city == city_name:
+            if city.name == city_name:
                 return city
         raise Exception('city not found')
 
@@ -58,10 +65,10 @@ class Graph:
         while to_visit:
             current = self.smallest_h(dict_h, to_visit)
 
-            if debug:
-                print(f'visiting : {current.name}')
+            print_debug(f'visiting : {current.name}', debug)
 
             if current == to_city:
+                print_debug('current city is the target, exiting the algorithm', debug)
                 break
 
             to_visit.remove(current)
@@ -73,11 +80,11 @@ class Graph:
 
                     if not city in to_visit: # if the city isn't in the visit map yet add it
                         to_visit.add(city)
-                        if debug:
-                            print(f'discovered new city ; {city.name}')
+
+                        print_debug(f'discovered new city ; {city.name}', debug)
                     elif temp_g >= dict_g[city]: # if the city has a better distance, add its better value
-                        if debug:
-                            print(f'visiting {city.name} but distance is not optimal')
+
+                        print_debug(f'neighbor {city.name} from {current.name} but distance is not optimal', debug)
                         continue
 
 
@@ -85,13 +92,12 @@ class Graph:
                     dict_g[city] = temp_g
                     dict_h[city] = dict_g[city] + heuristic(city, to_city)
 
-                    if debug:
-                        print(f'new shorter path to {city.name} - distance : {dict_h[city]}')
+                    print_debug(f'new shorter path to {city.name} from {current.name} - distance : {dict_h[city]}', debug)
             if display_iterations:
                 iterations += 1
 
         if display_iterations:
-            print(f'\niterations : {iterations}\n')
+            print(f'iterations : {iterations}')
 
         return self.reconstruct_path(path_done, current)
 
@@ -104,6 +110,7 @@ class Graph:
         while current in path_done.keys():
             current = path_done[current]
             final_path.append(current)
+
         return final_path
 
     def smallest_h(self, d, to_visit):
@@ -113,11 +120,10 @@ class Graph:
             if key in to_visit:
                 if min == None:
                     min = key
-                else:
-                    if d[min] > val:
-                        min = key
+                elif d[min] > val:
+                    min = key
         return min
 
 
     def __str__(self):
-        return f'cities :\n%s' % '\n'.join([str(city)+os.linesep for city in self.cities])
+        return 'cities :\n%s' % '\n'.join([str(city)+os.linesep for city in self.cities])
